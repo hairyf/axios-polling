@@ -1,0 +1,34 @@
+{
+  "name": "axios-polling",
+  "version": "1.0.0",
+  "description": "axios polling request",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TuiMao233/axios-polling.git"
+  },
+  "keywords": [
+    "axios",
+    "polling",
+    "axios-polling",
+    "poll"
+  ],
+  "author": "Mr.Mao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TuiMao233/axios-polling/issues"
+  },
+  "homepage": "https://github.com/TuiMao233/axios-polling#readme",
+  "devDependencies": {
+    "@types/lodash": "^4.14.170",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "lodash": "^4.17.21",
+    "nanoid": "^3.1.23"
+  }
+}
