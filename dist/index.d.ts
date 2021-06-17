@@ -31,6 +31,13 @@ declare class Observe {
     loop: boolean;
     stacks: ObserveStacks;
     constructor(id?: string, loop?: boolean, stacks?: ObserveStacks);
+    remove: () => void;
+    off: () => void;
+    on: {
+        (event: 'request', callback: (config: AxiosRequestConfig) => void): void;
+        <T = any>(event: 'response', callback: (response: AxiosResponse<T>) => void): void;
+        (event: 'error', callback: (error: AxiosError) => void): void;
+    };
 }
 declare class AxiosPolling {
     private instance;
@@ -43,14 +50,14 @@ declare class AxiosPolling {
     emit: (observe: Observe, config: AxiosRequestConfig) => void;
     /** 创建轮询, 返回监视者实例 */
     createPolling: (createConfig?: AxiosRequestConfig) => {
-        on: {
-            (event: 'request', callback: (config: AxiosRequestConfig) => void): void;
-            <T = any>(event: 'response', callback: (response: AxiosResponse<T>) => void): void;
-            (event: 'error', callback: (error: AxiosError) => void): void;
-        };
-        off: () => void;
         emit: (config?: AxiosRequestConfig) => void;
         remove: () => void;
+        on: {
+            (event: "request", callback: (config: AxiosRequestConfig) => void): void;
+            <T = any>(event: "response", callback: (response: AxiosResponse<T>) => void): void;
+            (event: "error", callback: (error: AxiosError<any>) => void): void;
+        };
+        off: () => void;
     };
 }
 /**

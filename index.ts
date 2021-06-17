@@ -1,7 +1,7 @@
 /*
  * @Author: Mr.Mao
  * @Date: 2021-06-03 09:24:39
- * @LastEditTime: 2021-06-14 15:58:52
+ * @LastEditTime: 2021-06-17 23:11:12
  * @Description:
  * @LastEditors: Mr.Mao
  * @autograph: 任何一个傻子都能写出让电脑能懂的代码，而只有好的程序员可以写出让人能看懂的代码
@@ -33,6 +33,7 @@ declare module 'axios' {
     poll: InstanceType<typeof AxiosPolling>['createPolling']
   }
 }
+
 interface ObserveStacks {
   request: ((config: AxiosRequestConfig) => void)[]
   response: ((response: AxiosResponse) => void)[]
@@ -49,6 +50,21 @@ class Observe {
       error: []
     }
   ) { }
+  remove = () => {
+    this['stacks']['error'] = []
+    this['stacks']['request'] = []
+    this['stacks']['response'] = []
+  }
+  off = () => {
+    this.loop = false
+  }
+  on: {
+    (event: 'request', callback: (config: AxiosRequestConfig) => void): void;
+    <T = any>(event: 'response', callback: (response: AxiosResponse<T>) => void): void;
+    (event: 'error', callback: (error: AxiosError) => void): void;
+  } = (event: 'request' | 'response' | 'error', callback: any) => {
+    this['stacks'][event].push(callback)
+  }
 }
 
 class AxiosPolling {
@@ -97,28 +113,13 @@ class AxiosPolling {
   /** 创建轮询, 返回监视者实例 */
   createPolling = (createConfig: AxiosRequestConfig = {}) => {
     const observe = new Observe()
-    const emit = (config: AxiosRequestConfig = {}) => {
-      this.emit(observe, assign(createConfig, config))
-    }
-    const remove = () => {
-      observe['stacks']['error'] = []
-      observe['stacks']['request'] = []
-      observe['stacks']['response'] = []
-    }
-    const off = () => {
-      observe.loop = false
-    }
-    function on(event: 'request', callback: (config: AxiosRequestConfig) => void): void
-    function on<T = any>(event: 'response', callback: (response: AxiosResponse<T>) => void): void
-    function on(event: 'error', callback: (error: AxiosError) => void): void
-    function on(event: 'request' | 'response' | 'error', callback: any) {
-      observe['stacks'][event].push(callback)
-    }
     return {
-      on,
-      off,
-      emit,
-      remove
+      emit:(config: AxiosRequestConfig = {}) => {
+        this.emit(observe, assign(createConfig, config))
+      },
+      remove: observe.remove,
+      on: observe.on,
+      off: observe.off
     }
   }
 }
