@@ -7,7 +7,7 @@ axios polling request
 ### npm & ESM
 
 ~~~
-npm i axios axios-polling
+yarn add axios-polling
 ~~~
 
 ### introduce。
