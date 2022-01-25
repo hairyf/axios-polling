@@ -53,9 +53,9 @@ declare class AxiosPolling {
         emit: (config?: AxiosRequestConfig) => void;
         remove: () => void;
         on: {
-            (event: "request", callback: (config: AxiosRequestConfig) => void): void;
-            <T = any>(event: "response", callback: (response: AxiosResponse<T>) => void): void;
-            (event: "error", callback: (error: AxiosError<any>) => void): void;
+            (event: "request", callback: (config: AxiosRequestConfig<any>) => void): void;
+            <T = any>(event: "response", callback: (response: AxiosResponse<T, any>) => void): void;
+            (event: "error", callback: (error: AxiosError<any, any>) => void): void;
         };
         off: () => void;
     };

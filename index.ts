@@ -1,9 +1,9 @@
 /*
  * @Author: Mr.Mao
  * @Date: 2021-06-03 09:24:39
- * @LastEditTime: 2021-06-17 23:11:12
+ * @LastEditTime: 2022-01-25 15:10:19
  * @Description:
- * @LastEditors: Mr.Mao
+ * @LastEditors: Mr'Mao
  * @autograph: 任何一个傻子都能写出让电脑能懂的代码，而只有好的程序员可以写出让人能看懂的代码
  */
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError, AxiosStatic } from 'axios'
@@ -93,7 +93,7 @@ class AxiosPolling {
         poling.count += 1
         // 再次进入 loop
         loopModel.call(poling.dalay + poling.delayGaps)
-      } catch (e) {
+      } catch (e: any) {
         const poling = e.config?.poling as AxiosPollingConfig
         // 调用当前监视者失败堆栈
         observe['stacks']['error'].forEach((callback) => callback(e))

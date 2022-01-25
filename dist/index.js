@@ -4,9 +4,9 @@ exports.axiosPolling = void 0;
 /*
  * @Author: Mr.Mao
  * @Date: 2021-06-03 09:24:39
- * @LastEditTime: 2021-06-17 23:08:01
+ * @LastEditTime: 2022-01-25 15:10:19
  * @Description:
- * @LastEditors: Mr.Mao
+ * @LastEditors: Mr'Mao
  * @autograph: 任何一个傻子都能写出让电脑能懂的代码，而只有好的程序员可以写出让人能看懂的代码
  */
 const axios_1 = require("axios");
@@ -95,7 +95,7 @@ class AxiosPolling {
             },
             remove: observe.remove,
             on: observe.on,
-            off: observe.off,
+            off: observe.off
         };
     };
 }
