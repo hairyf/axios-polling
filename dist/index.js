@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.axiosPolling = void 0;
+exports.axiosPolling = exports.AxiosPolling = void 0;
 /*
  * @Author: Mr.Mao
  * @Date: 2021-06-03 09:24:39
- * @LastEditTime: 2022-01-25 15:10:19
+ * @LastEditTime: 2022-01-25 15:13:01
  * @Description:
  * @LastEditors: Mr'Mao
  * @autograph: 任何一个傻子都能写出让电脑能懂的代码，而只有好的程序员可以写出让人能看懂的代码
@@ -99,6 +99,7 @@ class AxiosPolling {
         };
     };
 }
+exports.AxiosPolling = AxiosPolling;
 /**
  * axios 轮询装饰器
  * @param axios axios 实例

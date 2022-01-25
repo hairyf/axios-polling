@@ -39,7 +39,7 @@ declare class Observe {
         (event: 'error', callback: (error: AxiosError) => void): void;
     };
 }
-declare class AxiosPolling {
+export declare class AxiosPolling {
     private instance;
     constructor(instance?: AxiosStatic);
     /** 循环调用模型 */
