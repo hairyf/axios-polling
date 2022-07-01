@@ -2,7 +2,7 @@
 axios polling request
 
 
-## 安装 & 使用
+## Install & use
 
 ### npm & ESM
 
@@ -15,37 +15,37 @@ yarn add axios-polling
 ~~~js
 import axios from 'axios'
 import { axiosPolling } from 'axios-polling'
-// 初始化 axios-polling
+// init axios-polling
 axiosPolling(axios, {
   retryLimit: 15
 })
-// 后续编辑轮询配置
+// edit config
 axios.defaults.polling['retryLimit'] = 20
 
-// 创建轮询请求
+// create polling
 const { emit, on, off, remove } = axios.poll({
   url: '/message',
   params: { id: 1 }
 })
-// 发送轮询请求
-// emit 配置会与 poll 配置合并, emit 配置优先
+// send polling
+// Transmit config will be merged with poll config, transmit config takes precedence
 emit({ params: { id: 2 } })
 
-// 监听发送请求前
+// watch request
 on('request', (config) => {
   console.log(config.polling.count)
 })
-// 监听发送请求后
+// watch response
 on('response', (response) => {
   console.log(response)
 })
-// 监听请求失败
+// watch error
 on('error', (error) => {
   console.log(response)
 })
-// 关闭轮询请求
+// close polling
 off()
-// 移除所有 on 监听队列
+// remove all on
 remove()
 ~~~
 
@@ -53,17 +53,17 @@ remove()
 
 ~~~ts
 interface AxiosPollingConfig {
-  /** 当前正常轮询的总次数，初始值：0 */
+  /** The total number of previous normal polls, initial value: 0 */
   count: number
-  /** 正常轮询时，请求延迟毫秒数，默认：1000毫秒 */
+  /** When polling normally, the request delay in milliseconds, default: 1000 milliseconds */
   dalay: number
-  /**  轮询请求间隔递增毫秒数，默认：0毫秒（建议不要超过1000） */
+  /**  Polling request interval increments in milliseconds, default: 0 milliseconds (recommended not to exceed 1000) */
   delayGaps: number
-  /** 发生错误时，当前已重试的次数，初始值：0 */
+  /** When an error occurs, the current number of retries, initial value: 0 */
   retryCount: number
-  /** 当发生错误时请求的最大次数，默认：10次 */
+  /** The maximum number of requests when an error occurs, default: 10 */
   retryLimit: number
-  /** 第一次发送请求毫秒数，默认：1000毫秒 */
+  /** The number of milliseconds to send the first request, default: 1000 milliseconds */
   retryAfter: number
 }
 ~~~
