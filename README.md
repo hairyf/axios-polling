@@ -56,7 +56,7 @@ interface AxiosPollingConfig {
   /** The total number of previous normal polls, initial value: 0 */
   count: number
   /** When polling normally, the request delay in milliseconds, default: 1000 milliseconds */
-  dalay: number
+  delay: number
   /**  Polling request interval increments in milliseconds, default: 0 milliseconds (recommended not to exceed 1000) */
   delayGaps: number
   /** When an error occurs, the current number of retries, initial value: 0 */
