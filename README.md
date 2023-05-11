@@ -15,12 +15,13 @@ yarn add axios-polling
 ~~~js
 import axios from 'axios'
 import { axiosPolling } from 'axios-polling'
+
 // init axios-polling
 axiosPolling(axios, {
   retryLimit: 15
 })
 // edit config
-axios.defaults.polling['retryLimit'] = 20
+axios.defaults.polling.retryLimit = 20
 
 // create polling
 const { emit, on, off, remove } = axios.poll({
@@ -41,7 +42,7 @@ on('response', (response) => {
 })
 // watch error
 on('error', (error) => {
-  console.log(response)
+  console.log(error)
 })
 // close polling
 off()
@@ -49,7 +50,7 @@ off()
 remove()
 ~~~
 
-### config。
+### config
 
 ~~~ts
 interface AxiosPollingConfig {
@@ -67,3 +68,7 @@ interface AxiosPollingConfig {
   retryAfter: number
 }
 ~~~
+
+## License
+
+[MIT](./LICENSE) License © 2022-PRESENT [hairyf](https://github.com/hairyf)
