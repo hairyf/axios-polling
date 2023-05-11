@@ -3,7 +3,7 @@ export interface AxiosPollingConfig {
     /** 当前正常轮询的总次数，初始值：0 */
     count: number;
     /** 正常轮询时，请求延迟毫秒数，默认：1000毫秒 */
-    dalay: number;
+    delay: number;
     /**  轮询请求间隔递增毫秒数，默认：0毫秒（建议不要超过1000） */
     delayGaps: number;
     /** 发生错误时，当前已重试的次数，初始值：0 */

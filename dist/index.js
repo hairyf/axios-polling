@@ -66,7 +66,7 @@ class AxiosPolling {
                 poling.delayGaps += poling.delayGaps;
                 poling.count += 1;
                 // 再次进入 loop
-                loopModel.call(poling.dalay + poling.delayGaps);
+                loopModel.call(poling.delay + poling.delayGaps);
             }
             catch (e) {
                 const poling = e.config?.poling;
@@ -80,7 +80,7 @@ class AxiosPolling {
                 poling.retryCount += 1;
                 config.poling = poling;
                 // 再次进入 loop
-                loopModel.call(poling.dalay + poling.delayGaps);
+                loopModel.call(poling.delay + poling.delayGaps);
             }
         });
         // 初次调用循环请求
@@ -108,7 +108,7 @@ exports.AxiosPolling = AxiosPolling;
 const axiosPolling = (axios, config) => {
     const defaultConfig = {
         count: 0,
-        dalay: 1000,
+        delay: 1000,
         delayGaps: 0,
         retryCount: 0,
         retryLimit: 10,
