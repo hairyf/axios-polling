@@ -1,4 +1,9 @@
 # axios-polling
+
+> **Read-only / maintenance mode** — This project has had no commits for over 1000 days (as of 2026-02). It is kept for reference; no active development or dependency updates are planned. For alternatives, consider the ecosystem or fork.
+
+---
+
 axios polling request
 
 
