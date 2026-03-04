@@ -1,7 +1,6 @@
 # axios-polling
 axios polling request
 
-
 ## Install & use
 
 ### npm & ESM

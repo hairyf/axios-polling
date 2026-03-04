@@ -3,6 +3,11 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   test: {
     environment: 'node',
+    server: {
+      deps: {
+        inline: ['vitest-package-exports'],
+      },
+    },
     include: ['test/**/*.{test,spec}.ts'],
     coverage: {
       provider: 'v8',
