@@ -19,13 +19,13 @@ export class LoopObserver {
     public stacks: ObserverStacks = { request: [], response: [], error: [] },
   ) {}
 
-  remove() {
+  remove(): void {
     this.stacks.error = []
     this.stacks.request = []
     this.stacks.response = []
   }
 
-  off() {
+  off(): void {
     this.loop = false
   }
 

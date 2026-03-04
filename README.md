@@ -1,14 +1,13 @@
 # axios-polling
 axios polling request
 
-
 ## Install & use
 
 ### npm & ESM
 
-~~~
+```bash
 yarn add axios-polling
-~~~
+```
 
 ### introduce。
 

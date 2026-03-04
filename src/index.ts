@@ -29,8 +29,15 @@ export interface AxiosPollingConfig {
   retryAfter: number
 }
 
-export function createPolling(instance = axios as AxiosStatic | AxiosInstance) {
-  function emit(observer: LoopObserver, config: AxiosRequestConfig) {
+export interface PollingInstance {
+  emit: (config?: AxiosRequestConfig) => void
+  remove: LoopObserver['remove']
+  on: LoopObserver['on']
+  off: LoopObserver['off']
+}
+
+export function createPolling(instance = axios as AxiosStatic | AxiosInstance): (createConfig?: AxiosRequestConfig) => PollingInstance {
+  function emit(observer: LoopObserver, config: AxiosRequestConfig): void {
     const loop = createLooper(async () => {
       try {
         // 当前监视者循环调用关闭时, 阻止 loop
@@ -66,25 +73,25 @@ export function createPolling(instance = axios as AxiosStatic | AxiosInstance) {
     loop(config?.poling?.retryAfter || instance.defaults.poling?.retryAfter)
   }
 
-  function create(createConfig: AxiosRequestConfig = {}) {
+  function create(createConfig: AxiosRequestConfig = {}): PollingInstance {
     const observer = new LoopObserver()
 
-    function _emit(config: AxiosRequestConfig = {}) {
+    function _emit(config: AxiosRequestConfig = {}): void {
       emit(observer, assign(createConfig, config))
     }
 
     return {
       emit: _emit,
-      remove: observer.remove,
+      remove: observer.remove.bind(observer),
       on: observer.on,
-      off: observer.off,
+      off: observer.off.bind(observer),
     }
   }
 
   return create
 }
 
-export function axiosPolling(axios: AxiosStatic | AxiosInstance, config?: Partial<AxiosPollingConfig>) {
+export function axiosPolling(axios: AxiosStatic | AxiosInstance, config?: Partial<AxiosPollingConfig>): void {
   const defaultConfig = {
     count: 0,
     delay: 1000,
