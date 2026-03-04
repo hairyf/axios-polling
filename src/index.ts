@@ -75,9 +75,9 @@ export function createPolling(instance = axios as AxiosStatic | AxiosInstance) {
 
     return {
       emit: _emit,
-      remove: observer.remove,
+      remove: observer.remove.bind(observer),
       on: observer.on,
-      off: observer.off,
+      off: observer.off.bind(observer),
     }
   }
 
